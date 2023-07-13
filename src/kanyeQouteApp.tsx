@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
 
+interface Quote {
+    quote: string;
+}
 
-function KanyeQouteApp() {
-  const [qoute, setQoute] = useState<string>();
+function KanyeQuoteApp() {
+  const [message, setMessage] = useState<Quote>();
 
   useEffect(() => {
-    const fetchJoke = async () => {
+    const fetchQuote = async () => {
       const response = await fetch(
         "https://api.kanye.rest/"
       );
-      const jsonBody: string = await response.json();
-      setQoute(jsonBody);
+      const jsonBody: Quote = await response.json();
+      setMessage(jsonBody);
     };
 
-    fetchJoke();
+    fetchQuote();
   }, []);
 
-  // useEffect(() => {
-  //   fetch("https://jokestemp.neillbogie.repl.co/jokes/general/random")
-  //     .then(response => response.json())
-  //     .then((jsonBody: Joke[]) => setJoke(jsonBody[0]));
-  // }, [])
+//   useEffect(() => {
+//     fetch("https://api.kanye.rest/")
+//       .then(response => response.json())
+//       .then((jsonBody: Quote) => setMessage(jsonBody));
+//   }, [])
+
+
 
   return (
     <>
-      <h1>Kanye Qoute App</h1>
-      {qoute && (
+      <h1>Kanye Quote App</h1>
+      {message && (
         // This is a conditional rendering strategy
         //  using 'short-circuiting': if the left-hand
         //  side of an && is false, then JavaScript
@@ -36,7 +41,7 @@ function KanyeQouteApp() {
         // Exploiting that feature to conditional render JSX!
         <>
           <p>
-            <b>{qoute}</b>
+            <b>{message.quote}</b>
           </p>
         </>
       )}
@@ -44,4 +49,4 @@ function KanyeQouteApp() {
   );
 }
 
-export default KanyeQouteApp;
+export default KanyeQuoteApp;

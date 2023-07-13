@@ -6,7 +6,7 @@ import KanyeQouteApp from "./kanyeQouteApp";
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <KanyeQouteApp/>
+    <KanyeQouteApp />
   </React.StrictMode>,
   document.getElementById("root")
 );
